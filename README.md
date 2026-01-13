@@ -1,6 +1,9 @@
 <h1 align="center"> Crabi Test</h1>
 
-<h1 align="center">![Alt text](Images/unnamed.png)</h1>
+<p align="center">
+  <img src="Images/unnamed.png" alt="Crabi Logo" width="120">
+</p>
+
 
 ## Project Overview
 This project was developed as part of a technical data analytics case for **Crabi**, an insurance company.  
