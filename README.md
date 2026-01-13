@@ -1,6 +1,6 @@
-<h1 align="center">Crabi</h1>
+<h1 align="center"> Crabi Test</h1>
 
-![Alt text](Images/unnamed.png)
+<h1 align="center">![Alt text](Images/unnamed.png)</h1>
 
 ## Project Overview
 This project was developed as part of a technical data analytics case for **Crabi**, an insurance company.  
