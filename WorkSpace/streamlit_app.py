@@ -255,6 +255,37 @@ def age_range_distribution(df_Claim_Age):
 
     return fig
 
+#Grouping into users 
+
+User_Sum = (
+df_Claim_Age
+        .groupby('number_x')['amount']
+        .sum()
+        .reset_index(name='amount')
+        .sort_values('amount', ascending=True)
+)
+#Merging with original data frame
+User_Sum = User_Sum.merge(df_Claim_Age,left_on='number_x',right_on='number_x')
+User_Sum = User_Sum[User_Sum['Status Name'] == 'Asegurado De Crabi']
+User_Sum = User_Sum.drop_duplicates(subset=['number_x'])
+
+def top_users_bar(User_Sum):
+    data = User_Sum.head(10)
+
+    fig, ax = plt.subplots()
+    ax.bar(
+        data['first_name'],
+        data['amount_x']
+    )
+
+    ax.set_xlabel('Usuario Crabi')
+    ax.set_ylabel('Amount')
+    ax.set_title('Main Offenders')
+
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+
+    return fig
 
 
 #------------------------------------------------STREAMLIT APP----------------------------------------------------
@@ -272,7 +303,7 @@ with st.sidebar:
     )
 
 if selected == "Daily Dashboard":
-    st.title("Crabi – Daily Dashboard")
+    st.title("Crabi  Daily Dashboard")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -295,6 +326,9 @@ if selected == "Daily Dashboard":
                 * El rango Etario de personas que mas incidencia tienen es el de 30 a 39, seguido del rango 50-59
                 * El rango Etario con menos incidencias es de 40-49 
                 """)
+    st.title("Main Offenders")
+    st.pyplot(top_users_bar(User_Sum))
+
 
 
 
